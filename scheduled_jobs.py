@@ -16,8 +16,8 @@ def initialise_scheduled_jobs(app):
 
 
 def process_orders(app):
-    try:
-        with app.app_context():
+    with app.app_context():
+        try:
             orders = get_queue_of_orders_to_process()
             if len(orders) == 0:
                 return
@@ -40,10 +40,10 @@ def process_orders(app):
 
             order.set_as_processed()
             save_order(order)
-    except:
-        order.set_as_failed()
-        save_order(order)
-        app.logger.exception("Error processing order {id}".format(id = order.id))
+        except:
+            order.set_as_failed()
+            save_order(order)
+            app.logger.exception("Error processing order {id}".format(id = order.id))
 
 def get_queue_of_orders_to_process():
     allOrders = get_all_orders()
