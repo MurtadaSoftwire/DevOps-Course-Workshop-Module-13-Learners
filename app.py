@@ -8,6 +8,9 @@ from scheduled_jobs import initialise_scheduled_jobs
 from products import create_product_download
 import requests
 import logging
+from azure.monitor.opentelemetry import configure_azure_monitor
+
+configure_azure_monitor()
 
 logging.basicConfig(level=logging.INFO)
 
