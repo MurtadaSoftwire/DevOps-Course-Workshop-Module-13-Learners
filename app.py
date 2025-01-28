@@ -9,7 +9,7 @@ import requests
 import logging
 from azure.monitor.opentelemetry import configure_azure_monitor
 
-configure_azure_monitor()
+configure_azure_monitor(enable_live_metrics = True)
 
 logging.basicConfig(level=logging.INFO)
 
